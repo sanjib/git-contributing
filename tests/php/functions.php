@@ -1,17 +1,18 @@
 <?php
+
 /**
  * Shared functionality for all test suites.
  *
  * @package     KnowTheCode\GitContributing\Tests\PHP
  * @since       1.0.0
  * @link        https://github.com/KnowTheCode/git-contributing
- * @license     GNU-2.0+
+ * @license     GPLv3
  */
 
 namespace KnowTheCode\GitContributing\Tests\PHP;
 
-if ( version_compare( phpversion(), '5.6.0', '<' ) ) {
-	die( 'Whoops, PHP 5.6 or higher is required.' );
+if (version_compare(phpversion(), '5.6.0', '<')) {
+	die('Whoops, PHP 5.6 or higher is required.');
 }
 
 /**
@@ -21,11 +22,12 @@ if ( version_compare( phpversion(), '5.6.0', '<' ) ) {
  *
  * @return string
  */
-function get_plugin_root_dir() {
+function get_plugin_root_dir()
+{
 	static $root_dir;
 
-	if ( is_null( $root_dir ) ) {
-		$root_dir = dirname( dirname( __DIR__ ) ) . DIRECTORY_SEPARATOR;
+	if (is_null($root_dir)) {
+		$root_dir = dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR;
 	}
 
 	return $root_dir;
@@ -38,11 +40,12 @@ function get_plugin_root_dir() {
  *
  * @return void
  */
-function load_composer_autoloader() {
+function load_composer_autoloader()
+{
 	$path_to_vendor_dir = get_plugin_root_dir() . 'vendor' . DIRECTORY_SEPARATOR;
 
-	if ( ! is_readable( $path_to_vendor_dir . 'autoload.php' ) ) {
-		die( 'Whoops, we need Composer before we start running tests.  Please type: `composer install`.  When done, try running `phpunit` again.' );
+	if (!is_readable($path_to_vendor_dir . 'autoload.php')) {
+		die('Whoops, we need Composer before we start running tests.  Please type: `composer install`.  When done, try running `phpunit` again.');
 	}
 
 	require_once $path_to_vendor_dir . 'autoload.php';

@@ -1,11 +1,12 @@
 <?php
+
 /**
  * Test Case Traits for the Plugin's test suites.
  *
  * @package     KnowTheCode\GitContributing\Tests\PHP
  * @since       1.0.0
  * @link        https://github.com/KnowTheCode/git-contributing
- * @license     GNU-2.0+
+ * @license     GPLv3
  */
 
 namespace KnowTheCode\GitContributing\Tests\PHP;
@@ -15,7 +16,8 @@ namespace KnowTheCode\GitContributing\Tests\PHP;
  *
  * @package KnowTheCode\GitContributing\Tests\Unit
  */
-trait Test_Case_Trait {
+trait Test_Case_Trait
+{
 
 	/**
 	 * The path to test suite's root directory.
@@ -36,8 +38,9 @@ trait Test_Case_Trait {
 	 *
 	 * @return void
 	 */
-	protected function load_original_functions( array $files ) {
-		foreach ( $files as $file ) {
+	protected function load_original_functions(array $files)
+	{
+		foreach ($files as $file) {
 			require_once $this->test_root_dir . $file;
 		}
 	}
@@ -55,19 +58,20 @@ trait Test_Case_Trait {
 	 *
 	 * @return string
 	 */
-	protected function format_the_html( $html ) {
-		$html = trim( $html );
+	protected function format_the_html($html)
+	{
+		$html = trim($html);
 
 		// Strip whitespace between the tags.
-		$html = preg_replace( '/(\>)\s*(\<)/m', '$1$2', $html );
+		$html = preg_replace('/(\>)\s*(\<)/m', '$1$2', $html);
 
 		// Strip whitespace at the end of a tag.
-		$html = preg_replace( '/(\>)\s*/m', '$1$2', $html );
+		$html = preg_replace('/(\>)\s*/m', '$1$2', $html);
 
 		// Strip whitespace at the start of a tag.
-		$html = preg_replace( '/\s*(\<)/m', '$1$2', $html );
+		$html = preg_replace('/\s*(\<)/m', '$1$2', $html);
 
-		return str_replace( '>', ">\n", $html );
+		return str_replace('>', ">\n", $html);
 	}
 
 	/**
@@ -81,10 +85,11 @@ trait Test_Case_Trait {
 	 * @return \ReflectionMethod
 	 * @throws \ReflectionException Throws an exception if method does not exist.
 	 */
-	protected function get_reflective_method( $method_name, $class_name ) {
-		$class  = new \ReflectionClass( $class_name );
-		$method = $class->getMethod( $method_name );
-		$method->setAccessible( true );
+	protected function get_reflective_method($method_name, $class_name)
+	{
+		$class  = new \ReflectionClass($class_name);
+		$method = $class->getMethod($method_name);
+		$method->setAccessible(true);
 
 		return $method;
 	}
@@ -100,10 +105,11 @@ trait Test_Case_Trait {
 	 * @return \ReflectionProperty|string
 	 * @throws \ReflectionException Throws an exception if property does not exist.
 	 */
-	protected function get_reflective_property( $property, $class ) {
-		$class    = new \ReflectionClass( $class );
-		$property = $class->getProperty( $property );
-		$property->setAccessible( true );
+	protected function get_reflective_property($property, $class)
+	{
+		$class    = new \ReflectionClass($class);
+		$property = $class->getProperty($property);
+		$property->setAccessible(true);
 
 		return $property;
 	}
@@ -120,10 +126,11 @@ trait Test_Case_Trait {
 	 * @return \ReflectionProperty|string
 	 * @throws \ReflectionException Throws an exception if property does not exist.
 	 */
-	protected function set_reflective_property( $value, $property, $instance ) {
-		$property = $this->get_reflective_property( $property, $instance );
-		$property->setValue( $instance, $value );
-		$property->setAccessible( false );
+	protected function set_reflective_property($value, $property, $instance)
+	{
+		$property = $this->get_reflective_property($property, $instance);
+		$property->setValue($instance, $value);
+		$property->setAccessible(false);
 
 		return $property;
 	}

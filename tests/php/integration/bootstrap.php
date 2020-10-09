@@ -1,11 +1,12 @@
 <?php
+
 /**
  * Bootstraps the Plugin's Integration Tests.
  *
  * @package     KnowTheCode\GitContributing\Tests\PHP\Integration
  * @since       1.0.0
  * @link        https://github.com/KnowTheCode/git-contributing
- * @license     GNU-2.0+
+ * @license     GPLv3
  */
 
 namespace KnowTheCode\GitContributing\Tests\PHP\Integration;
@@ -20,7 +21,8 @@ use function KnowTheCode\GitContributing\Tests\PHP\load_composer_autoloader;
  *
  * @return string
  */
-function get_test_root_dir() {
+function get_test_root_dir()
+{
 	return __DIR__;
 }
 
@@ -31,26 +33,27 @@ function get_test_root_dir() {
  *
  * @return string
  */
-function get_wp_tests_dir() {
-	$tests_dir = getenv( 'WP_TESTS_DIR' );
+function get_wp_tests_dir()
+{
+	$tests_dir = getenv('WP_TESTS_DIR');
 
 	// Travis CI & Vagrant SSH tests directory.
-	if ( empty( $tests_dir ) ) {
+	if (empty($tests_dir)) {
 		$tests_dir = '/tmp/wordpress-tests';
 	}
 
 	// If the tests' includes directory does not exist, try a relative path to the Core tests directory.
-	if ( ! file_exists( $tests_dir . '/includes/' ) ) {
+	if (!file_exists($tests_dir . '/includes/')) {
 		$tests_dir = '../../../../tests/phpunit';
 	}
 
 	// Check it again. If it doesn't exist, stop here and post a message as to why we stopped.
-	if ( ! file_exists( $tests_dir . '/includes/' ) ) {
-		trigger_error( 'Unable to run the integration tests, because the WordPress test suite could not be located.', E_USER_ERROR ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error -- Valid use case for our testing suite.
+	if (!file_exists($tests_dir . '/includes/')) {
+		trigger_error('Unable to run the integration tests, because the WordPress test suite could not be located.', E_USER_ERROR); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error -- Valid use case for our testing suite.
 	}
 
 	// Strip off the trailing directory separator, if it exists.
-	return rtrim( $tests_dir, DIRECTORY_SEPARATOR );
+	return rtrim($tests_dir, DIRECTORY_SEPARATOR);
 }
 
 /**
@@ -60,7 +63,8 @@ function get_wp_tests_dir() {
  *
  * @return void
  */
-function startup_wp_test_suite() {
+function startup_wp_test_suite()
+{
 	$wp_tests_dir = get_wp_tests_dir();
 
 	// Gives access to tests_add_filter() function.
@@ -77,13 +81,14 @@ function startup_wp_test_suite() {
  *
  * @return void
  */
-function load_dependencies() {
-	require_once dirname( __DIR__ ) . '/functions.php';
+function load_dependencies()
+{
+	require_once dirname(__DIR__) . '/functions.php';
 	load_composer_autoloader();
 
 	startup_wp_test_suite();
 
-	require_once dirname( __DIR__ ) . '/test-case-trait.php';
+	require_once dirname(__DIR__) . '/test-case-trait.php';
 	require_once get_test_root_dir() . '/class-test-case.php';
 
 	// Load the plugin.
