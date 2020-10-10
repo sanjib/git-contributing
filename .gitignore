@@ -5,15 +5,3 @@ composer.lock
 /logs/
 /reports/
 .idea/
-
-# Unit tests config
-phpunit.xml
-.travis.yml
-/bin
-tests/mocks/env/
-
-# Sass cache
-.sass-cache/
-
-# Development files
-/assets/vendor/
