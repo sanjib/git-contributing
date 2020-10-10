@@ -1,10 +1,11 @@
 <?php
+
 /**
  * Launches the Git Contributing plugin.
  *
  * @package     KnowTheCode\GitContributing
  * @author      hellofromTonya
- * @license     GPL-2.0+
+ * @license     GPLv3
  *
  * @wordpress-plugin
  * Plugin Name: Git Contributing
@@ -14,8 +15,8 @@
  * Author:      Git Contributing Team
  * Author URI:  https://KnowTheCode.io
  * Text Domain: git-contributing
- * License:     GPL-2.0+
- * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+ * License:     GPLv3
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
  */
 
 namespace KnowTheCode\GitContributing;
@@ -29,7 +30,8 @@ namespace KnowTheCode\GitContributing;
  *
  * @return string
  */
-function _get_plugin_directory() {
+function _get_plugin_directory()
+{
 	return __DIR__;
 }
 
@@ -42,11 +44,12 @@ function _get_plugin_directory() {
  *
  * @return string
  */
-function _get_plugin_url() {
+function _get_plugin_url()
+{
 	static $plugin_url;
 
-	if ( empty( $plugin_url ) ) {
-		$plugin_url = plugins_url( null, __FILE__ );
+	if (empty($plugin_url)) {
+		$plugin_url = plugins_url(null, __FILE__);
 	}
 
 	return $plugin_url;
@@ -59,8 +62,9 @@ function _get_plugin_url() {
  *
  * @return bool
  */
-function _is_in_development_mode() {
-	return defined( WP_DEBUG ) && WP_DEBUG === true;
+function _is_in_development_mode()
+{
+	return defined(WP_DEBUG) && WP_DEBUG === true;
 }
 
 /**
@@ -70,12 +74,13 @@ function _is_in_development_mode() {
  *
  * @return void
  */
-function autoload_files() {
+function autoload_files()
+{
 	$files = array(
 		// add the list of files to load here.
 	);
 
-	foreach ( $files as $file ) {
+	foreach ($files as $file) {
 		require __DIR__ . '/src/' . $file;
 	}
 }
@@ -87,7 +92,8 @@ function autoload_files() {
  *
  * @return void
  */
-function launch() {
+function launch()
+{
 	autoload_files();
 }
 

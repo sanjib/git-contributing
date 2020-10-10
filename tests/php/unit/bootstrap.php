@@ -1,11 +1,12 @@
 <?php
+
 /**
  * Bootstraps the Plugin's Unit Tests.
  *
  * @package     KnowTheCode\GitContributing\Tests\PHP\Unit
  * @since       1.0.0
  * @link        https://github.com/KnowTheCode/git-contributing
- * @license     GNU-2.0+
+ * @license     GPLv3
  */
 
 namespace KnowTheCode\GitContributing\Tests\PHP\Unit;
@@ -19,7 +20,8 @@ use function KnowTheCode\GitContributing\Tests\PHP\load_composer_autoloader;
  *
  * @return string
  */
-function get_test_root_dir() {
+function get_test_root_dir()
+{
 	return __DIR__;
 }
 
@@ -30,11 +32,12 @@ function get_test_root_dir() {
  *
  * @return void
  */
-function load_dependencies() {
-	require_once dirname( __DIR__ ) . '/functions.php';
+function load_dependencies()
+{
+	require_once dirname(__DIR__) . '/functions.php';
 	load_composer_autoloader();
 
-	require_once dirname( __DIR__ ) . '/test-case-trait.php';
+	require_once dirname(__DIR__) . '/test-case-trait.php';
 	require_once get_test_root_dir() . '/class-test-case.php';
 }
 

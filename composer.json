@@ -2,7 +2,7 @@
     "name": "knowthecode/git-contributing",
     "description": "Git Contributing - an awesome collaborative project to teach you the contributor workflow.",
     "type": "wordpress-plugin",
-    "license": "GPL-2.0+",
+    "license": "GPLv3",
     "support": {
         "issues": "https://github.com/KnowTheCode/git-contributing/issues",
         "source": "https://github.com/KnowTheCode/git-contributing"

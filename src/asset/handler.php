@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Asset Handler.
  *
@@ -6,12 +7,12 @@
  * @since       1.0.0
  * @author      Git Contributing Team
  * @link        https://knowthecode.io
- * @license     GNU-2.0+
+ * @license     GPLv3
  */
 
 namespace KnowTheCode\GitContributing\Asset;
 
-add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_plugin_script' );
+add_action('wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_plugin_script');
 /**
  * Enqueues the plugin's script(s).
  *
@@ -19,7 +20,8 @@ add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_plugin_script' );
  *
  * @return void
  */
-function enqueue_plugin_script() {
+function enqueue_plugin_script()
+{
 	$file = _is_in_development_mode()
 		? '/assets/dist/project.min.js'
 		: '/assets/scripts/project.js';
@@ -27,13 +29,13 @@ function enqueue_plugin_script() {
 	wp_enqueue_script(
 		'git_contributing_script',
 		_get_plugin_url() . $file,
-		array( 'jquery' ),
-		_get_asset_version( $file ),
+		array('jquery'),
+		_get_asset_version($file),
 		true
 	);
 }
 
-add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_plugin_css' );
+add_action('wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_plugin_css');
 /**
  * Enqueues the plugin's stylesheet.
  *
@@ -41,7 +43,8 @@ add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_plugin_css' );
  *
  * @return void
  */
-function enqueue_plugin_css() {
+function enqueue_plugin_css()
+{
 	$file = _is_in_development_mode()
 		? '/assets/dist/project.min.css'
 		: '/assets/css/project.css';
@@ -50,7 +53,7 @@ function enqueue_plugin_css() {
 		'git_contributing_styles',
 		_get_plugin_url() . $file,
 		array(),
-		_get_asset_version( $file )
+		_get_asset_version($file)
 	);
 }
 
@@ -63,6 +66,7 @@ function enqueue_plugin_css() {
  *
  * @return bool|int
  */
-function _get_asset_version( $relative_path ) {
-	return filemtime( _get_plugin_directory() . $relative_path );
+function _get_asset_version($relative_path)
+{
+	return filemtime(_get_plugin_directory() . $relative_path);
 }
